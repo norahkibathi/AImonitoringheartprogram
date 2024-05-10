@@ -21,18 +21,18 @@ def generate_specialist_data():
 # Define function to generate fake data for patients
 def generate_patient_data():
     return {
-        'Age': fake.random_int(min=10, max=90),
-        'Sex': fake.random_element(elements=('male', 'female')),
-        'ChestPainType': fake.random_element(elements=('ATA', 'NAP', 'ASY')),
-        'RestingBP': f"{fake.random_int(min=90, max=180)}/{fake.random_int(min=60, max=120)}",
-        'Cholesterol': fake.random_int(min=100, max=300),
-        'FastingBS': fake.boolean(),
-        'ecg': fake.random_element(elements=('Normal', 'Abnormal')),
-        'MaxHR': fake.random_int(min=60, max=200),
-        'ExerciseAngina': fake.random_element(elements=('Y', 'N')),
-        'Oldpeak': fake.random_int(min=0, max=5),
+        'age': fake.random_int(min=10, max=90),
+        'sex': fake.random_element(elements=('male', 'female')),
+        'chest_pain_type': fake.random_element(elements=('ATA', 'NAP', 'ASY')),
+        'resting_bp': f"{fake.random_int(min=90, max=180)}/{fake.random_int(min=60, max=120)}",
+        'cholesterol': fake.random_int(min=100, max=300),
+        'fasting_bs': fake.boolean(),
+        'ecg': fake.random_element(elements=('Nor', 'Abnor')),
+        'max_hr': fake.random_int(min=60, max=200),
+        'exercise_angina': fake.random_element(elements=('Y', 'N')),
+        'old_peak': fake.random_int(min=0, max=5),
         'segment_slope': fake.random_element(elements=('Up', 'Flat', 'Down')),
-        'HeartDisease': fake.boolean()
+        'heart_disease': fake.boolean()
     }
 
 

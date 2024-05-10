@@ -2,6 +2,8 @@
 from sqlalchemy import create_engine, Column, Integer, String, Float, Boolean, ForeignKey
 from sqlalchemy.orm import declarative_base, sessionmaker, relationship
 from flask import Flask
+from alembic import op
+import sqlalchemy as sa
 Base = declarative_base()
 
 
@@ -55,19 +57,19 @@ class Patient(Base):
     def __init__(self, data):
         # Assuming data is a dictionary with keys matching the column names
 
-        self.age = data['Age']
-        self.sex = data['Sex']
-        self.chest_pain_type = data['ChestPainType']
-        self.resting_bp = data['RestingBP']
-        self.cholesterol = data['Cholesterol']
-        self.fasting_bs = bool(data['FastingBS'])  # Convert to boolean (0 or 1)
-        self.ecg = data['ecg']
-        self.max_hr = data['MaxHR']
-        self.exercise_angina = data['ExerciseAngina']
-        self.oldpeak = data['Oldpeak']
-        self.segment_slope = data['ST_Slope']
-        self.heart_disease = bool(data['HeartDisease'])  # Convert to boolean (0 or 1)
-        self.ecg_results = data.get('ECGResults')  # Set ECG results if available
+        self.age = int (data['age'])
+        self.sex = data['sex']
+        self.chest_pain_type = data['chest_pain_type']
+        self.resting_bp= data['resting_bp']
+        self.cholesterol = data['cholesterol']
+        self.fasting_bs = bool(data['fasting_bs'])  # Convert to boolean (0 or 1)
+        self.ecg_resultsecg = data['ecg']
+        self.max_hr = data['max_hr']
+        self.exercise_angina = data['exercise_angina']
+        self.oldpeak = data['old_peak']
+        self.segment_slope = data['segment_slope']
+        self.heart_disease = bool(data['heart_disease'])  # Convert to boolean (0 or 1)
+        self.ecg_results = data.get('ecg_results')  # Set ECG results if available
         self.calculate_risk_score()
         self.get_risk_category()
 
@@ -104,7 +106,7 @@ class Patient(Base):
                 self.risk_score += 1
 
         # Adjust based on ECG results
-        if self.ecg_results == "Abnormal":
+        if self.ecg_results == "Abnor":
             self.risk_score += 1
 
         self.get_risk_category()
@@ -134,7 +136,12 @@ session = Session()
 # Create tables
 Base.metadata.create_all(engine)
 
-# Close the session
+def upgrade():
+    op.add_column('patients', sa.Column('ecg', sa.String))
+
+
+# Close the sessionop.add_column('patients', sa.Column('ecg', sa.String))
+
 session.close()
 
 
