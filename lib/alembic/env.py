@@ -9,10 +9,10 @@ from alembic import context
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
-
+config_file_name
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
-if config.config_file_name is not None:
+if config. is not None:
     fileConfig(config.config_file_name)
 
 # add your model's MetaData object here
@@ -40,7 +40,7 @@ def run_migrations_offline() -> None:
 
     """
     url = config.get_main_option("sqlite:///heart.db")
-    context.configure(
+    context.configure(l
         url=url,
         target_metadata=target_metadata,
         literal_binds=True,

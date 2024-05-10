@@ -140,6 +140,8 @@ def upgrade():
     op.add_column('patients', sa.Column('ecg', sa.String))
 
 
+
+
 # Close the sessionop.add_column('patients', sa.Column('ecg', sa.String))
 
 session.close()
